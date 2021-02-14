@@ -1,0 +1,22 @@
+sudo: required
+services:
+    - docker
+# only can test in dev
+before_install:
+    - docker build -t mpragnarok/react-test -f ./client/Dockerfile.dev ./client
+# run the test suite
+script:
+    - docker run -e CI=true mpragnarok/react-test npm run test -- --coverage
+
+after_success:
+    - docker build -t mpragnarok/multi-client ./client
+    - docker build -t mpragnarok/multi-nginx ./nginx
+    - docker build -t mpragnarok/multi-server ./server
+    - docker build -t mpragnarok/multi-worker ./worker
+    # log in to the docker CLI
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    # push those images to docker hub
+    - docker push mpragnarok/multi-client
+    - docker push mpragnarok/multi-nginx
+    - docker push mpragnarok/multi-server
+    - docker push mpragnarok/multi-worker
