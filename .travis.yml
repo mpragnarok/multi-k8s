@@ -16,8 +16,8 @@ after_success:
     # log in to the docker CLI
     - echo $DOCKER_ID
     - echo $DOCKER_PASSWORD
-    - echo "$DOCKER_ID"
-    - echo "$DOCKER_PASSWORD"
+    # - echo "$DOCKER_ID"
+    # - echo "$DOCKER_PASSWORD"
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
     # push those images to docker hub
     - docker push mpragnarok/multi-client
