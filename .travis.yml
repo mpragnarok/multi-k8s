@@ -14,7 +14,7 @@ after_success:
     - docker build -t mpragnarok/multi-server ./server
     - docker build -t mpragnarok/multi-worker ./worker
     # log in to the docker CLI
-    - echo "\$DOCKER_PASSWORD" | docker login -u "\$DOCKER_ID" --password-stdin
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
     # push those images to docker hub
     - docker push mpragnarok/multi-client
     - docker push mpragnarok/multi-nginx
