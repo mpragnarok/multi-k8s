@@ -20,3 +20,13 @@ after_success:
     - docker push mpragnarok/multi-nginx
     - docker push mpragnarok/multi-server
     - docker push mpragnarok/multi-worker
+
+deploy:
+    provider: elasticbeanstalk
+    region: "us-east-2"
+    app: "multi-docker"
+    env: "Multidocker-env"
+    bucket_name: "elasticbeanstalk-us-east-2-544101413601"
+    bucket_path: "docker-multi"
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
