@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: server
-        image: mpragarok/multi-server:v2
+        image: mpragarok/multi-server
         resources:
           limits:
             memory: "128Mi"
