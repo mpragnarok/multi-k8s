@@ -1,7 +1,7 @@
 # Build images with latest and $SHA tag
 docker build -t mpragarok/multi-client:latest -t mpragarok/multi-client:$SHA -f ./client/Dockerfile ./client
-docker build -t mpragarok/multi-server:latest mpragarok/multi-server:$SHA -f ./server/Dockerfile ./server
-docker build -t mpragarok/multi-worker:latest mpragarok/multi-worker:$SHA -f ./worker/Dockerfile ./worker
+docker build -t mpragarok/multi-server:latest -t mpragarok/multi-server:$SHA -f ./server/Dockerfile ./server
+docker build -t mpragarok/multi-worker:latest -t mpragarok/multi-worker:$SHA -f ./worker/Dockerfile ./worker
 
 # Push built images
 docker push mpragarok/multi-client:latest
