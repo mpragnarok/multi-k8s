@@ -1,0 +1,20 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: minahuang-info-tls
+spec:
+  secretName: minahuang-info
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: minahuang.info
+  dnsNames:
+    - minahuang.info
+    - www.minahuang.info
+  # acme:
+  #   config:
+  #     - http01:
+  #         ingressClass: nginx
+  #       domains:
+  #         - minahuang.info
+  #         - www.minahuang.info
