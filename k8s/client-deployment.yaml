@@ -17,7 +17,10 @@ spec:
         image: mpragarok/multi-client
         resources:
           limits:
-            memory: "512Mi"
-            cpu: "500m"
+            # memory: "512Mi"
+            # cpu: "500m"
+            # deployment on GCP should use cpu 100M, memory 128 Mi
+            memory: "128Mi"
+            cpu: "100m"
         ports:
         - containerPort: 3000
