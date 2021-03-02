@@ -11,7 +11,7 @@ function App() {
             <div className="App">
                 <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo" />
-                    <h1>Fib Calculator version KUBERNETES! updated</h1>
+                    <h1>Fib Calculator version KUBERNETES! local updated</h1>
                     <p>
                         Edit <code>src/App.js</code> and save to reload.
                     </p>

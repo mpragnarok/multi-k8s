@@ -12,18 +12,32 @@ build:
         '**/*.js': .
         '**/*.css': .
         '**/*.html': .
+    - image: mpragarok/multi-server
+      context: server
+      docker:
+        dockerfile: Dockerfile.dev
+      sync:
+        '**/*.js': .
+    - image: mpragarok/multi-worker
+      context: worker
+      docker:
+        dockerfile: Dockerfile.dev
+      sync:
+        '**/*.js': .
 deploy:
   kubectl:
     manifests:
       - k8s/client-deployment.yaml
       - k8s/server-deployment.yaml
       - k8s/worker-deployment.yaml
-      - k8s/database-persistent-volume-claim.yaml
       - k8s/ingress-service.yaml
-      - k8s/postgres-cluster-ip-service.yaml
-      - k8s/postgres-deployment.yaml
-      - k8s/redis-cluster-ip-service.yaml
-      - k8s/redis-deployment.yaml
-      - k8s/worker-deployment.yaml
       - k8s/server-cluster-ip-service.yaml
       - k8s/client-cluster-ip-service.yaml
+
+      # persistent data will be delete when closing the skaffold
+      # They should not open by skaffold
+      # - k8s/database-persistent-volume-claim.yaml
+      # - k8s/postgres-cluster-ip-service.yaml
+      # - k8s/postgres-deployment.yaml
+      # - k8s/redis-cluster-ip-service.yaml
+      # - k8s/redis-deployment.yaml
